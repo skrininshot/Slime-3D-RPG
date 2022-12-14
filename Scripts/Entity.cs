@@ -2,23 +2,39 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    [field: SerializeField] public float HP { get; protected set; }
-    [field: SerializeField] public float MaxHP { get; protected set; }
-    [field: SerializeField] public float Damage { get; protected set; }
-    [SerializeField] protected Healthbar HpBar;
+    [SerializeField] protected Healthbar hpBar;
 
-    protected void Awake()
+    [Header("Entity Variables")]
+    [field: SerializeField] protected float hp;
+    [field: SerializeField] protected float maxHP;
+    [field: SerializeField] protected float damage;
+
+    public float HP
     {
-        HpBar.Set(HP, MaxHP);
+        get { return hp; }
+        protected set
+        {
+            hp = value;
+            hpBar.Set(hp, maxHP);
+        }
     }
+    public float MaxHP
+    {
+        get { return maxHP; }
+        protected set
+        {
+            maxHP = value;
+            hpBar.Set(hp, maxHP);
+        }
+    }
+    public float Damage => damage;
 
     public virtual void GetDamage(float damage)
     {
-        HP -= damage;
-        HpBar.Set(HP, MaxHP);
-        if (HP <= 0)
+        hp -= damage;
+        if (hp <= 0)
         {
-            HP = 0;
+            hp = 0;
             Die();
             return;
         }

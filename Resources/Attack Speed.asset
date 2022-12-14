@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907f4a93d3f4e074ea5627d85ec4bbf9, type: 3}
   m_Name: Attack Speed
   m_EditorClassIdentifier: 
-  points: 10
   level: 1
-  cost: 10
-  art: {fileID: 21300000, guid: 88b302b72fbf710408c4472ee69bdcd7, type: 3}
+  startCost: 20
+  startPoints: 1
+  art: {fileID: 21300000, guid: f38c18f2c11dd3a46b4c4f0c38eb96d5, type: 3}
+  pointsPerBuy: 1

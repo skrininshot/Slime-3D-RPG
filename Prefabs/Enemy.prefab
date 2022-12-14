@@ -111,9 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a66126538fa1d4ebbce2da9c60a388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <HP>k__BackingField: 50
-  <MaxHP>k__BackingField: 50
-  HpBar: {fileID: 2006180189331467977}
+  hp: 25
+  maxHP: 25
+  damage: 5
+  hpBar: {fileID: 2006180189331467977}
 --- !u!1001 &2900241080431776148
 PrefabInstance:
   m_ObjectHideFlags: 0

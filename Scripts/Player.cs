@@ -2,14 +2,20 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    [SerializeField] private Skill damage;
-    [SerializeField] private Skill maxHP;
+    [Header("Skills")]
+    [SerializeField] protected SkillInfo damageSkill;
+    [SerializeField] protected SkillInfo maxHPSkill;
+
+    private void Awake()
+    {
+        UpdateSkills();
+        hp = maxHP;
+    }
 
     private void UpdateSkills()
     {
-        Damage = damage.points;
-        MaxHP = maxHP.points;
-        HpBar.Set(HP, MaxHP);
+        damage = damageSkill.Points;
+        maxHP = maxHPSkill.Points;
     }
 
     protected override void Attack(Entity entity)

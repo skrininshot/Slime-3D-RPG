@@ -8,8 +8,7 @@ public class SkillArticleUI : MonoBehaviour
     [SerializeField] private Text level;
     [SerializeField] private Text cost;
     [SerializeField] private Image art;
-    [SerializeField] private Skill skill;
-    [SerializeField] private int pointsPerBuy;
+    [SerializeField] private SkillInfo skill;
 
     public delegate void UpgradeSkill();
     public static event UpgradeSkill OnUpgrade;
@@ -22,9 +21,7 @@ public class SkillArticleUI : MonoBehaviour
 
     public void SkillLevelUp()
     {
-        skill.level++;
-        skill.points += pointsPerBuy;
-        skill.cost = skill.level * pointsPerBuy;
+        skill.Level++;
         UpdateInfo();
         OnUpgrade();
     }
@@ -32,9 +29,9 @@ public class SkillArticleUI : MonoBehaviour
     private void UpdateInfo()
     {
         skillName.text = skill.name;
-        points.text = skill.points.ToString();
-        level.text = "Lv " + skill.level.ToString();
-        cost.text = skill.cost.ToString() + "$";
-        art.sprite = skill.art;
+        points.text = skill.Points.ToString();
+        level.text = "Lv " + skill.Level.ToString();
+        cost.text = skill.CurrectCost.ToString() + "$";
+        art.sprite = skill.Art;
     }
 }
