@@ -37,6 +37,7 @@ public abstract class Entity : MonoBehaviour
 
     public virtual void GetDamage(float damage)
     {
+        HitPool.Instance.CreateHit(transform.position, (int)damage);
         HP -= damage;
         if (HP <= 0)
         {
@@ -49,7 +50,7 @@ public abstract class Entity : MonoBehaviour
     protected abstract void Die();
     protected virtual IEnumerator AttackTimer()
     {
-        WaitForSecondsRealtime wait = new WaitForSecondsRealtime(1f / attackFrequency);
+        WaitForSeconds wait = new (1f / attackFrequency);
         while (true)
         {
             yield return wait;

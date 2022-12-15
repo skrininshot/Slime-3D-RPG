@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Attack Speed
   m_EditorClassIdentifier: 
   level: 1
-  startCost: 20
+  startCost: 15
   startPoints: 1
   art: {fileID: 21300000, guid: f38c18f2c11dd3a46b4c4f0c38eb96d5, type: 3}
   pointsPerBuy: 1

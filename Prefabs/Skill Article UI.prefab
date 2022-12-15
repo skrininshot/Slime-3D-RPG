@@ -549,13 +549,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad5877ad3e54ca49876987f94271610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: {fileID: 2744912851749965055}
-  points: {fileID: 2744912853309239609}
-  level: {fileID: 2744912852415494584}
-  cost: {fileID: 2744912852565282380}
-  art: {fileID: 2744912853565630005}
-  skill: {fileID: 0}
-  pointsPerBuy: 0
+  nameText: {fileID: 2744912851749965055}
+  pointsText: {fileID: 2744912853309239609}
+  levelText: {fileID: 2744912852415494584}
+  costText: {fileID: 2744912852565282380}
+  artImage: {fileID: 2744912853565630005}
+  skillInfo: {fileID: 0}
 --- !u!1 &2744912853309239612
 GameObject:
   m_ObjectHideFlags: 0

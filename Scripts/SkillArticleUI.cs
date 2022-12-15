@@ -3,36 +3,61 @@ using UnityEngine.UI;
 
 public class SkillArticleUI : MonoBehaviour
 {
-    [SerializeField] private Text skillName;
-    [SerializeField] private Text points;
-    [SerializeField] private Text level;
-    [SerializeField] private Text cost;
-    [SerializeField] private Image art;
-    [SerializeField] private SkillInfo skill;
+    [SerializeField] private Text nameText;
+    [SerializeField] private Text pointsText;
+    [SerializeField] private Text levelText;
+    [SerializeField] private Text costText;
+    [SerializeField] private Image artImage;
+    [SerializeField] private SkillInfo skillInfo;
+
+    private int level;
+    private int startCost;
+    private int startPoints;
+    private Sprite art;
+    private int pointsPerBuy;
+
+    public int Points => startPoints + (level > 1 ? (pointsPerBuy * (level - 1)) : 0);
+    public int Level
+    {
+        get => level;
+        set
+        {
+            if (value > 0) level = value;
+        }
+    }
+    public int CurrectCost => level * startCost;
+    public Sprite Art => art;
+    public int PointsPerBuy => pointsPerBuy;
 
     public delegate void UpgradeSkill();
     public static event UpgradeSkill OnUpgrade;
 
     private void Awake()
-    {
-        name = skill.name;
+    { 
+        level = skillInfo.Level;
+        startCost = skillInfo.StartCost;
+        startPoints = skillInfo.StartPoints;
+        art = skillInfo.Art;
+        pointsPerBuy = skillInfo.PointsPerBuy;
+
+        nameText.text = skillInfo.name;
+        artImage.sprite = Art;
+
         UpdateInfo();
     }
 
     public void SkillLevelUp()
     {
-        if (!Money.Instance.SpendMoney(skill.CurrectCost)) return;
-        skill.Level++;
+        if (!Money.Instance.SpendMoney(CurrectCost)) return;
+        level++;
         UpdateInfo();
         OnUpgrade();
     }
 
     private void UpdateInfo()
     {
-        skillName.text = skill.name;
-        points.text = skill.Points.ToString();
-        level.text = "Lv " + skill.Level.ToString();
-        cost.text = skill.CurrectCost.ToString() + "$";
-        art.sprite = skill.Art;
+        pointsText.text = Points.ToString();
+        levelText.text = "Lv " + Level.ToString();
+        costText.text = CurrectCost.ToString() + "$";
     }
 }

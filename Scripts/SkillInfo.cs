@@ -9,16 +9,10 @@ public class SkillInfo : ScriptableObject
     [SerializeField] private Sprite art;
     [SerializeField] private int pointsPerBuy;
 
-    public int Points =>  startPoints + (level > 1 ? (pointsPerBuy * level) : 0);
-    public int Level 
-    {
-        get => level;
-        set
-        {
-            if (value > 0) level = value;
-        }
-    }
-    public int CurrectCost => level * startCost;
+    public int StartCost => startCost;
+    public int StartPoints => startPoints;
+    public int Points => startPoints;
+    public int Level => level;
     public Sprite Art => art;
     public int PointsPerBuy => pointsPerBuy;
 }

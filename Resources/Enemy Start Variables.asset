@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f19d95ea466ca469b6a26c057f274f, type: 3}
   m_Name: Enemy Start Variables
   m_EditorClassIdentifier: 
-  hp: 10
-  maxHP: 10
+  hp: 15
+  maxHP: 15
   damage: 5
-  walkSpeed: 3
-  attackFrequency: 2
+  walkSpeed: 2
+  attackFrequency: 2.5

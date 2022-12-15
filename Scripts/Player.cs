@@ -37,6 +37,7 @@ public class Player : Entity
         else
         {
             StopAllCoroutines();
+            HP = MaxHP;
         }
     }
 
@@ -70,7 +71,7 @@ public class Player : Entity
 
     protected override void Die()
     {
-        
+        GameManager.Instance.GameOver();
     }
 
     private void OnEnable()

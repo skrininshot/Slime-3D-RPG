@@ -6,7 +6,7 @@ public class Money : MonoBehaviour
 {
     public static Money Instance { get; private set; }
     [SerializeField] private Text text;
-    [SerializeField] private SkillInfo rewardSkill;
+    [SerializeField] private SkillArticleUI rewardSkill;
     public int MoneyCount { get; private set; }
 
     private void Awake()
@@ -41,7 +41,7 @@ public class Money : MonoBehaviour
         MoneyCount = expectingBalance;
         float difference = expectingBalance - currentBalance;
         float secondsPart = seconds / difference;
-        WaitForSecondsRealtime wait = new (Mathf.Abs(secondsPart));
+        WaitForSeconds wait = new (Mathf.Abs(secondsPart));
         while (Mathf.Abs(currentBalance - expectingBalance) > 1)
         {
             currentBalance += Mathf.Sign(difference);
