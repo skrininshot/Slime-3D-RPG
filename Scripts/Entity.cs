@@ -8,6 +8,7 @@ public abstract class Entity : MonoBehaviour
     [field: SerializeField] protected float hp;
     [field: SerializeField] protected float maxHP;
     [field: SerializeField] protected float damage;
+    [field: SerializeField] protected float walkSpeed;
 
     public float HP
     {
@@ -28,6 +29,7 @@ public abstract class Entity : MonoBehaviour
         }
     }
     public float Damage => damage;
+    public float WalkSpeed => walkSpeed;
 
     public virtual void GetDamage(float damage)
     {
@@ -40,6 +42,5 @@ public abstract class Entity : MonoBehaviour
         }
     }
     protected abstract void Attack(Entity entity);
-    protected abstract void MoveTo(Vector3 point);
     protected abstract void Die();
 }
