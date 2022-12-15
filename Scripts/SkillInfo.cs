@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skill")]
+[CreateAssetMenu(menuName = "Gameplay/Skill")]
 public class SkillInfo : ScriptableObject
 {
     [SerializeField] private int level;

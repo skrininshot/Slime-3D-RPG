@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    public static Player Instance;
+    public static Player Instance { get; private set; }
     [Header("Skills")]
     [SerializeField] protected SkillInfo damageSkill;
     [SerializeField] protected SkillInfo maxHPSkill;
@@ -36,7 +36,7 @@ public class Player : Entity
         }
         else
         {
-            StopCoroutine(AttackTimer());
+            StopAllCoroutines();
         }
     }
 
@@ -48,11 +48,12 @@ public class Player : Entity
         }
         else
         {
-            Attack(currentEnemy);
+            if (Vector3.Distance(transform.position, transform.position) > 8f) return;
+                Attack(currentEnemy);
         }
     }
 
-    private void Move()
+    protected override void Move()
     {
         LevelPanels.Instance.Move(walkSpeed);
     }
@@ -61,6 +62,7 @@ public class Player : Entity
     {
         if (!canAttack) return;
         Bullet newBullet = bulletPool.GetFreeElement();
+        newBullet.transform.position = transform.position;
         newBullet.transform.forward = (currentEnemy.transform.position - transform.position).normalized;
         newBullet.Damage = damage;
         canAttack = false;

@@ -6,6 +6,8 @@ public class Enemy : Entity
 {
     public static Action OnDie;
     [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private EntityConfig startConfig;
+
     private Player player;
 
     private void Awake()
@@ -20,13 +22,13 @@ public class Enemy : Entity
             Move();
             return;
         }
-
         Attack(player);
     }
 
-    private void Move()
+    protected override void Move()
     {
-        transform.position += (player.transform.position - transform.position).normalized * walkSpeed * Time.deltaTime;
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        transform.position += direction * walkSpeed * Time.deltaTime;
     }
 
     protected override void Attack(Entity entity)
@@ -40,10 +42,22 @@ public class Enemy : Entity
     {
         StopCoroutine(AttackTimer());
         OnDie();
+        gameObject.SetActive(false);
+    }
+
+    private void GetConfigVariables()
+    {
+        float enemyLevel = 1 + AIDirector.Instance.DifficultMultiply;
+        HP = startConfig.HP * enemyLevel;
+        MaxHP = startConfig.MaxHP * enemyLevel;
+        damage = startConfig.Damage * enemyLevel;
+        walkSpeed = startConfig.WalkSpeed * enemyLevel;
+        attackFrequency = startConfig.AttackFrequency * enemyLevel;
     }
 
     private void OnEnable()
     {
+        GetConfigVariables();
         StartCoroutine(AttackTimer());
     }
 

@@ -21,6 +21,7 @@ public class SkillArticleUI : MonoBehaviour
 
     public void SkillLevelUp()
     {
+        if (!Money.Instance.SpendMoney(skill.CurrectCost)) return;
         skill.Level++;
         UpdateInfo();
         OnUpgrade();

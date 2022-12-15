@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 382165932}
   - component: {fileID: 382165934}
   - component: {fileID: 382165933}
+  - component: {fileID: 382165935}
   m_Layer: 5
   m_Name: Money Info
   m_TagString: Untagged
@@ -765,6 +766,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382165931}
   m_CullTransparentMesh: 1
+--- !u!114 &382165935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382165931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cc53368f8086345af57f00fb238bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 267502418}
+  rewardSkill: {fileID: 11400000, guid: f467646d48f4f7e4795f01644272acb6, type: 2}
 --- !u!1 &432759686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,6 +1815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2900241080909204363, guid: bb7767a25a444754984b88509a09d84c, type: 3}
   spawnDistance: 10
+  difficultMultiply: 0.1
 --- !u!4 &1930902634
 Transform:
   m_ObjectHideFlags: 0

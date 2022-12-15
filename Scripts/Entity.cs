@@ -33,7 +33,6 @@ public abstract class Entity : MonoBehaviour
     public float Damage => damage;
     public float WalkSpeed => walkSpeed;
     public float AttackFrequency => attackFrequency;
-
     protected bool canAttack = true;
 
     public virtual void GetDamage(float damage)
@@ -48,8 +47,7 @@ public abstract class Entity : MonoBehaviour
     }
     protected abstract void Attack(Entity entity);
     protected abstract void Die();
-
-    protected IEnumerator AttackTimer()
+    protected virtual IEnumerator AttackTimer()
     {
         WaitForSecondsRealtime wait = new WaitForSecondsRealtime(1f / attackFrequency);
         while (true)
@@ -58,4 +56,5 @@ public abstract class Entity : MonoBehaviour
             canAttack = true;
         }
     }
+    protected abstract void Move();
 }
