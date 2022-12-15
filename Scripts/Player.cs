@@ -6,10 +6,16 @@ public class Player : Entity
     [Header("Skills")]
     [SerializeField] protected SkillInfo damageSkill;
     [SerializeField] protected SkillInfo maxHPSkill;
-    private bool fighting;
+    [SerializeField] protected SkillInfo attackSpeedSkill;
+    [Header("Other")]
+    [SerializeField] private Bullet bulletPrefab;
+    private Enemy currentEnemy;
+    private PoolMono<Bullet> bulletPool;
 
     private void Awake()
     {
+        bulletPool = new PoolMono<Bullet>(bulletPrefab, 10, transform);
+        bulletPool.AutoExpand = true;
         UpdateSkills();
         hp = maxHP;
     }
@@ -18,22 +24,31 @@ public class Player : Entity
     {
         damage = damageSkill.Points;
         maxHP = maxHPSkill.Points;
+        attackFrequency = attackSpeedSkill.Points;
     }
 
-    private void EnemyCountChanged(int enemyCount)
+    private void SetEnemy(Enemy enemy)
     {
-        fighting = (enemyCount > 0);
+        currentEnemy = enemy;
+        if (currentEnemy != null)
+        {
+            StartCoroutine(AttackTimer());
+        }
+        else
+        {
+            StopCoroutine(AttackTimer());
+        }
     }
 
     private void Update()
     {
-        if (!fighting)
+        if (currentEnemy == null)
         {
             Move();
         }
         else
         {
-            
+            Attack(currentEnemy);
         }
     }
 
@@ -44,7 +59,11 @@ public class Player : Entity
 
     protected override void Attack(Entity entity)
     {
-        
+        if (!canAttack) return;
+        Bullet newBullet = bulletPool.GetFreeElement();
+        newBullet.transform.forward = (currentEnemy.transform.position - transform.position).normalized;
+        newBullet.Damage = damage;
+        canAttack = false;
     }
 
     protected override void Die()
@@ -56,13 +75,13 @@ public class Player : Entity
     {
         Instance = this;
         SkillArticleUI.OnUpgrade += UpdateSkills;
-        AIDirector.OnEnemyCountChanged += EnemyCountChanged;
+        AIDirector.OnEnemyCountChanged += SetEnemy;
     }
 
     private void OnDisable()
     {
         SkillArticleUI.OnUpgrade -= UpdateSkills;
-        AIDirector.OnEnemyCountChanged -= EnemyCountChanged;
+        AIDirector.OnEnemyCountChanged -= SetEnemy;
     }
 
 }

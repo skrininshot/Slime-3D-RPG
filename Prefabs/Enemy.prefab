@@ -116,7 +116,8 @@ MonoBehaviour:
   maxHP: 25
   damage: 5
   walkSpeed: 2
-  fightPoint: -4
+  attackFrequency: 2
+  attackRange: 1.5
 --- !u!1001 &2900241080431776148
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
@@ -9,6 +10,7 @@ public abstract class Entity : MonoBehaviour
     [field: SerializeField] protected float maxHP;
     [field: SerializeField] protected float damage;
     [field: SerializeField] protected float walkSpeed;
+    [field: SerializeField] protected float attackFrequency;
 
     public float HP
     {
@@ -30,17 +32,30 @@ public abstract class Entity : MonoBehaviour
     }
     public float Damage => damage;
     public float WalkSpeed => walkSpeed;
+    public float AttackFrequency => attackFrequency;
+
+    protected bool canAttack = true;
 
     public virtual void GetDamage(float damage)
     {
-        hp -= damage;
-        if (hp <= 0)
+        HP -= damage;
+        if (HP <= 0)
         {
-            hp = 0;
+            HP = 0;
             Die();
             return;
         }
     }
     protected abstract void Attack(Entity entity);
     protected abstract void Die();
+
+    protected IEnumerator AttackTimer()
+    {
+        WaitForSecondsRealtime wait = new WaitForSecondsRealtime(1f / attackFrequency);
+        while (true)
+        {
+            yield return wait;
+            canAttack = true;
+        }
+    }
 }

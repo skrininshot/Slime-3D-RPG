@@ -202,8 +202,11 @@ MonoBehaviour:
   maxHP: 0
   damage: 0
   walkSpeed: 5
+  attackFrequency: 0
   damageSkill: {fileID: 11400000, guid: 0af32b8684b9e974f9e29bebcc25bb64, type: 2}
   maxHPSkill: {fileID: 11400000, guid: 051248f83a652604687f08d38c24e7a4, type: 2}
+  attackSpeedSkill: {fileID: 11400000, guid: dc6a630b9ea56b444b6bd62f3019c05c, type: 2}
+  bulletPrefab: {fileID: 248639906875944063, guid: db2e88353f45b114283469a007639902, type: 3}
 --- !u!1001 &4221027986304189390
 PrefabInstance:
   m_ObjectHideFlags: 0
