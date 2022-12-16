@@ -8,33 +8,26 @@ public class Enemy : Entity
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private EntityConfig startConfig;
 
-    private Player player;
-
-    private void Awake()
-    {
-        player = Player.Instance;
-    }
-
     private void Update()
     {
-        if ((player.transform.position - transform.position).sqrMagnitude > attackRange)
+        if ((Player.Instance.transform.position - transform.position).sqrMagnitude > attackRange)
         {
             Move();
             return;
         }
-        Attack(player);
+        Attack(Player.Instance);
     }
 
     protected override void Move()
     {
-        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Vector3 direction = (Player.Instance.transform.position - transform.position).normalized;
         transform.position += direction * walkSpeed * Time.deltaTime;
     }
 
     protected override void Attack(Entity entity)
     {
         if (!canAttack) return;
-        player.GetDamage(damage);
+        Player.Instance.GetDamage(damage);
         canAttack = false;
     }
 

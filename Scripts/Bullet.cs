@@ -10,9 +10,9 @@ public class Bullet : MonoBehaviour
         transform.position += transform.forward * speed * Time.deltaTime; 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Enemy potentialEnemy = collision.gameObject.GetComponent<Enemy>();
+        Enemy potentialEnemy = other.gameObject.GetComponent<Enemy>();
         if (potentialEnemy != null)
         {
             potentialEnemy.GetDamage(Damage);

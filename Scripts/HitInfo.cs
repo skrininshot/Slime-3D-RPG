@@ -16,7 +16,7 @@ public class HitInfo : MonoBehaviour
 
     private void OnEnable()
     {
-        GetComponent<Animation>().Play();   
+        GetComponent<Animator>().Play(0);   
     }
 
     public void AlertObservers(string message)
@@ -28,6 +28,6 @@ public class HitInfo : MonoBehaviour
     }
     private void OnDisable()
     {
-        GetComponent<Animation>().Stop();
+        
     }
 }

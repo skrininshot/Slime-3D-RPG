@@ -7,12 +7,12 @@ public class SkillInfo : ScriptableObject
     [SerializeField] private int startCost;
     [SerializeField] private int startPoints;
     [SerializeField] private Sprite art;
-    [SerializeField] private int pointsPerBuy;
+    [SerializeField] private float pointsPerBuy;
 
     public int StartCost => startCost;
-    public int StartPoints => startPoints;
+    public float StartPoints => startPoints;
     public int Points => startPoints;
     public int Level => level;
     public Sprite Art => art;
-    public int PointsPerBuy => pointsPerBuy;
+    public float PointsPerBuy => pointsPerBuy;
 }

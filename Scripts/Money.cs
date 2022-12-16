@@ -7,7 +7,8 @@ public class Money : MonoBehaviour
     public static Money Instance { get; private set; }
     [SerializeField] private Text text;
     [SerializeField] private SkillArticleUI rewardSkill;
-    public int MoneyCount { get; private set; }
+    [SerializeField] private float animationSpeed = 0.5f;
+    public float MoneyCount { get; private set; }
 
     private void Awake()
     {
@@ -18,29 +19,29 @@ public class Money : MonoBehaviour
 
     public void GetReward()
     {
-        AddMoney(rewardSkill.Points);
+        AddMoney((int)rewardSkill.Points);
     }
 
     public void AddMoney(int count)
     {
         if (count < 0) return;
         StopAllCoroutines();
-        StartCoroutine(ChangeBalanceAnimation(MoneyCount, MoneyCount + count));
+        StartCoroutine(ChangeBalanceAnimation(MoneyCount, (int)MoneyCount + count));
     }
 
     public bool SpendMoney(int count)
     {
         if (count < 0 || (count > MoneyCount)) return false;
         StopAllCoroutines();
-        StartCoroutine(ChangeBalanceAnimation(MoneyCount, MoneyCount - count));
+        StartCoroutine(ChangeBalanceAnimation(MoneyCount, (int)MoneyCount - count));
         return true;
     }
 
-    private IEnumerator ChangeBalanceAnimation(float currentBalance, int expectingBalance, float seconds = 1f )
+    private IEnumerator ChangeBalanceAnimation(float currentBalance, int expectingBalance)
     {
         MoneyCount = expectingBalance;
         float difference = expectingBalance - currentBalance;
-        float secondsPart = seconds / difference;
+        float secondsPart = animationSpeed / difference;
         WaitForSeconds wait = new (Mathf.Abs(secondsPart));
         while (Mathf.Abs(currentBalance - expectingBalance) > 1)
         {

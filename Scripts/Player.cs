@@ -4,15 +4,16 @@ public class Player : Entity
 {
     public static Player Instance { get; private set; }
     [Header("Skills")]
-    [SerializeField] protected SkillInfo damageSkill;
-    [SerializeField] protected SkillInfo maxHPSkill;
-    [SerializeField] protected SkillInfo attackSpeedSkill;
+    [SerializeField] protected SkillArticleUI damageSkill;
+    [SerializeField] protected SkillArticleUI maxHPSkill;
+    [SerializeField] protected SkillArticleUI attackSpeedSkill;
+    [SerializeField] protected SkillArticleUI walkSpeedSkill;
     [Header("Other")]
     [SerializeField] private Bullet bulletPrefab;
     private Enemy currentEnemy;
     private PoolMono<Bullet> bulletPool;
 
-    private void Awake()
+    private void Start()
     {
         bulletPool = new PoolMono<Bullet>(bulletPrefab, 10, transform);
         bulletPool.AutoExpand = true;
@@ -22,6 +23,7 @@ public class Player : Entity
 
     private void UpdateSkills()
     {
+        walkSpeed = walkSpeedSkill.Points;
         damage = damageSkill.Points;
         maxHP = maxHPSkill.Points;
         attackFrequency = attackSpeedSkill.Points;

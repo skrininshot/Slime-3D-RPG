@@ -12,11 +12,11 @@ public class SkillArticleUI : MonoBehaviour
 
     private int level;
     private int startCost;
-    private int startPoints;
+    private float startPoints;
     private Sprite art;
-    private int pointsPerBuy;
+    private float pointsPerBuy;
 
-    public int Points => startPoints + (level > 1 ? (pointsPerBuy * (level - 1)) : 0);
+    public float Points => startPoints + (level > 1 ? (pointsPerBuy * (level - 1)) : 0);
     public int Level
     {
         get => level;
@@ -27,7 +27,7 @@ public class SkillArticleUI : MonoBehaviour
     }
     public int CurrectCost => level * startCost;
     public Sprite Art => art;
-    public int PointsPerBuy => pointsPerBuy;
+    public float PointsPerBuy => pointsPerBuy;
 
     public delegate void UpgradeSkill();
     public static event UpgradeSkill OnUpgrade;
