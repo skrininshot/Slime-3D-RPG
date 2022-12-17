@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject fadeScreen;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject pauseButton;
     public void Pause()
     {
         Time.timeScale = 0f;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
         Pause();
         fadeScreen.SetActive(true);
         gameOverScreen.SetActive(true);
+        pauseButton.SetActive(false);
     }
     public void Restart()
     {

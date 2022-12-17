@@ -8,9 +8,9 @@ public class MovingPanel : MonoBehaviour
     public void Move(float speed)
     {
         transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
-        if (transform.position.x + (panelSize * 0.5)  < - (panelSize * 0.5))
+        if (transform.position.x < -40f)
         {
-            transform.position = new Vector3(transform.position.x + (panelSize * 2f), 0, 0);
+            transform.position = new Vector3(transform.position.x + (panelSize * 4f), 0, 0);
             OnPanelPassed();
         } 
     }
