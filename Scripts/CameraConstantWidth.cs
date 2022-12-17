@@ -17,11 +17,6 @@ public class CameraConstantWidth : MonoBehaviour
     private float initialFov;
     private float horizontalFov = 120f;
 
-    private void OnEnable()
-    {
-        Screen.SetResolution(720, 1280, true);
-    }
-
     private void Start()
     {
         componentCamera = GetComponent<Camera>();
